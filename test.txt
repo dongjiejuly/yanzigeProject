@@ -1,9 +1,0 @@
-Git is a version control system.
-Git is free software.
-修改一下
-我想在加点，加点
-加点东西上去
-看看情况
-+++第二次加点东西上去
-++第三次加上去的东西
-++第四次加东西上去，再加后面一点东西表示修改
