@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- 配置数据源 -->
+	<bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"></property> -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@192.168.31.226:9656:orcl"></property>
+		<property name="username" value="jwellpay"></property>
+		<property name="password" value="jwellpay"></property>
+	</bean>
+	
+	<!-- 扫描SQL语句的XML文件 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 指定数据源 -->
+		<property name="dataSource" ref="basicDataSource"></property>
+		<property name="mapperLocations" value="classpath:com/model/mapper/*.xml"></property>
+	</bean>
+	
+	<!-- 扫描mapper类，并与XML相关联 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定接口类的存放位置 -->
+		<property name="basePackage" value="com.model.mapper"></property>
+	</bean>
+	
+</beans>
